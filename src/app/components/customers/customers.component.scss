@@ -1,0 +1,42 @@
+.container {
+  text-shadow: 1px 1px #000, -1px -1px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000, -1px 0px #000;
+  color: #fff;
+}
+
+h3:hover {
+  cursor: pointer;
+}
+
+nav {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+button {
+  border: 1px solid #000;
+  text-shadow: 1px 1px #000, -1px -1px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000, -1px 0px #000;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card {
+  padding: 1rem;
+  border-radius: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.plus {
+  color: #1E89F0;
+}
+
+.pagination a {
+  padding: 1rem;
+  background-color: red;
+  color: #fff;
+  border: 1px solid black;
+  font-weight: bold;
+}

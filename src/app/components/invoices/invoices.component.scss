@@ -1,0 +1,26 @@
+li {
+  color: #fff;
+  background: none;
+  border: none;
+  text-shadow: 1px 1px #000, -1px -1px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000, -1px 0px #000;
+}
+
+.card {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.info {
+  color: gold;
+  text-shadow: 1px 1px #000, -1px -1px #000, 0px 1px #000, 1px 0px #000, 0px -1px #000, -1px 0px #000;
+}
+
+.pagination a {
+  padding: 1rem;
+  background-color: red;
+  color: #fff;
+  border: 1px solid black;
+  font-weight: bold;
+}

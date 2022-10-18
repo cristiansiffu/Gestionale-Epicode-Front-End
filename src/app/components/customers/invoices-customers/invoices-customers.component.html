@@ -1,0 +1,85 @@
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-secondary bg-secondary">
+    <h3><a class="nav-link" data-toggle="modal" data-target="#myModal">Add Invoice:&nbsp;<span class="plus">&plus;</span></a></h3>
+  </nav>
+  <div class="container my-3 ms-3" *ngIf="customers">
+    <h3>Customer:&nbsp;<span class="info">{{customers.cognomeContatto}}</span></h3>
+    <h4>E-mail:&nbsp;<span class="info">{{customers.emailContatto}}</span></h4>
+    <h4>Phone:&nbsp;<span class="info">{{customers.telefonoContatto}}</span></h4>
+  </div>
+  <div *ngFor="let invoice of invoices">
+    <div class="card bg-dark text-light my-5 mx-auto p-1" style="max-width: 50rem;">
+      <div class="card-header">Submission date:&nbsp;{{invoice.anno}}</div>
+      <div class="card-body">
+        <h5 class="card-title">Amount:&nbsp;{{invoice.importo}}&euro;</h5>
+        <p class="card-text">Status:&nbsp;{{invoice.stato.nome}}</p>
+      </div>
+      <div class="card-footer text-right">
+        <button type="button" class="btn text-light btn-warning me-3" [routerLink]="['/invoices', invoice.id]">UPDATE</button>
+        <button type="button" class="btn text-light btn-danger" (click)="removeInvoice(invoice.id)">DELETE</button>
+      </div>
+    </div>
+  </div>
+  <nav>
+    <ul class="pagination" *ngIf="pages">
+      <li class="page-item" *ngIf="!pages.first"><a class="page-link" (click)="switchPage(customers.id, pages.number - 1)">Previous</a></li>
+      <li class="page-item" *ngIf="pages.number > 0"><a class="page-link"
+          (click)="switchPage(customers.id, pages.number - 1)">{{pages.number}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="switchPage(customers.id, pages.number)">{{pages.number + 1}}</a></li>
+      <li class="page-item" *ngIf="pages.number < pages.totalPages - 1"><a class="page-link"
+          (click)="switchPage(customers.id, pages.number + 1)">{{pages.number + 2}}</a>
+      </li>
+      <li class="page-item" *ngIf="!pages.last"><a class="page-link"
+          (click)="switchPage(customers.id, pages.number + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <ng-container *ngIf="f.submitted === true">
+          <h4 class="posted">Posted successfully</h4>
+        </ng-container>
+        <h4 class="modal-title">New invoice:</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="newInvoices(f)" #f="ngForm">
+          <div formGroupName="userInfo">
+            <div class="mb-3">
+              <label class="form-label" for="data">&#42;Date:</label>
+              <input class="form-control" type="datetime-local" formControlName="data" id="data" autocomplete="false">
+              <span class="errors" *ngIf="checkForm('userInfo.data')?.invalid && checkForm('userInfo.data')?.touched">
+                <ng-container *ngIf="getFormErrors('userInfo.data', 'required')">Postal code required</ng-container>
+              </span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label" for="importo">&#42;Amount:</label>
+              <input class="form-control" type="number" formControlName="importo" id="importo" autocomplete="false">
+              <span class="errors"
+                *ngIf="checkForm('userInfo.importo')?.invalid && checkForm('userInfo.importo')?.touched">
+                <ng-container *ngIf="getFormErrors('userInfo.importo', 'required')">importo required</ng-container>
+              </span>
+            </div>
+            <div formGroupName="stato">
+              <div class="mb-3">
+                <label class="form-label" for="id">&#42;Status:</label>
+                <select class="form-select" formControlName="id" id="id">
+                  <option *ngFor="let item of status" [value]="item.id">{{item.nome}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-lg btn-danger text-light my-1 w-50" [disabled]="!form.valid">Confirm</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-lg btn-dark text-light w-25" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

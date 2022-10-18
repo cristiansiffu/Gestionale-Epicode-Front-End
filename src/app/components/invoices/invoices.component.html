@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="container mx-auto my-5 w-75">
+    <div class="card my-5" style="width: 50rem;" *ngFor="let invoice of invoices">
+      <ul class="list-group">
+        <li class="list-group-item">Customer:&nbsp;<span class="info">{{invoice.cliente.cognomeContatto}}</span></li>
+        <li class="list-group-item">E-mail:&nbsp;<span class="info">{{invoice.cliente.emailContatto}}</span></li>
+        <li class="list-group-item">Phone:&nbsp;<span class="info">{{invoice.cliente.telefonoContatto}}</span></li>
+        <li class="list-group-item">Date:&nbsp;<span class="info">{{invoice.data | slice:0:10}}</span></li>
+        <li class="list-group-item">Amount:&nbsp;<span class="info">{{invoice.importo}}&euro;</span></li>
+        <li class="list-group-item text-end">Status:&nbsp;<span class="info">{{invoice.stato.nome}}</span></li>
+      </ul>
+    </div>
+  </div>
+  <div>
+    <nav>
+      <ul class="pagination" *ngIf="pages">
+        <li class="page-item" *ngIf="!pages.first"><a class="page-link" (click)="switchPage(0)">First</a></li>
+        <li class="page-item" *ngIf="pages.number > 0"><a class="page-link"
+            (click)="switchPage(pages.number - 1)">{{pages.number}}</a></li>
+        <li class="page-item"><a class="page-link" (click)="switchPage(pages.number)">{{pages.number + 1}}</a></li>
+        <li class="page-item" *ngIf="pages.number < pages.totalPages - 1"><a class="page-link"
+            (click)="switchPage(pages.number + 1)">{{pages.number + 2}}</a>
+        </li>
+        <li class="page-item" *ngIf="!pages.last"><a class="page-link"
+            (click)="switchPage(pages.totalPages - 2)">Last</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container my-3">
+  <div class="text-end"><h3 *ngIf="pages" class="my-3">Registered users:&nbsp;<span>{{pages.totalElements}}</span></h3></div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users, let i = index">
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.username}}</td>
+        <td>{{user.email}}</td>
+        <td><span *ngFor="let role of user.roles">{{role.roleName}}&nbsp;</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <nav>
+    <ul class="pagination" *ngIf="pages">
+      <li class="page-item" *ngIf="!pages.first"><a class="page-link" (click)="switchPage(pages.number - 1)">Previous</a></li>
+      <li class="page-item" *ngIf="pages.number > 0"><a class="page-link"
+          (click)="switchPage(pages.number - 1)">{{pages.number}}</a></li>
+      <li class="page-item"><a class="page-link" (click)="switchPage(pages.number)">{{pages.number + 1}}</a></li>
+      <li class="page-item" *ngIf="pages.number < pages.totalPages - 1"><a class="page-link"
+          (click)="switchPage(pages.number + 1)">{{pages.number + 2}}</a>
+      </li>
+      <li class="page-item" *ngIf="!pages.last"><a class="page-link"
+          (click)="switchPage(pages.number + 1)">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>

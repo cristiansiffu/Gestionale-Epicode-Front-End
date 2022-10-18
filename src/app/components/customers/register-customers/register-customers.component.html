@@ -1,0 +1,226 @@
+<div class="container mx-auto my-3 w-50">
+  <h3 class="my-3">Register new customer:</h3>
+  <form [formGroup]="form" (ngSubmit)="register(f)" #f="ngForm">
+    <div formGroupName="userInfo">
+      <div class="mb-3">
+        <label class="form-label" for="nomeContatto">Name</label>
+        <input class="form-control" type="text" formControlName="nomeContatto" id="nomeContatto">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.nomeContatto')?.invalid && checkForm('userInfo.nomeContatto')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.nomeContatto', 'required')">Name required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="cognomeContatto">Surname</label>
+        <input class="form-control" type="text" formControlName="cognomeContatto" id="cognomeContatto">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.cognomeContatto')?.invalid && checkForm('userInfo.cognomeContatto')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.cognomeContatto', 'required')">Surname required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email">E-mail</label>
+        <input class="form-control" type="email" formControlName="email" id="email">
+        <span class="errors" *ngIf="checkForm('userInfo.email')?.invalid && checkForm('userInfo.email')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.email', 'required')">E-mail required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="emailContatto">Contact e-mail</label>
+        <input class="form-control" type="email" formControlName="emailContatto" id="emailContatto">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.emailContatto')?.invalid && checkForm('userInfo.emailContatto')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.emailContatto', 'required')">Contact e-mail required
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="telefono">Phone</label>
+        <input class="form-control" type="tel" formControlName="telefono" id="telefono">
+        <span class="errors" *ngIf="checkForm('userInfo.telefono')?.invalid && checkForm('userInfo.telefono')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.telefono', 'required')">Phone required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="telefonoContatto">Contact phone</label>
+        <input class="form-control" type="tel" formControlName="telefonoContatto" id="telefonoContatto">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.telefonoContatto')?.invalid && checkForm('userInfo.telefonoContatto')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.telefonoContatto', 'required')">Contact phone required
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="pec">CEM</label>
+        <input class="form-control" type="text" formControlName="pec" id="pec">
+        <span class="errors" *ngIf="checkForm('userInfo.pec')?.invalid && checkForm('userInfo.pec')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.pec', 'required')">CEM required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="partitaIva">VAT</label>
+        <input class="form-control" type="text" formControlName="partitaIva" id="partitaIva">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.partitaIva')?.invalid && checkForm('userInfo.partitaIva')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.partitaIva', 'required')">VAT required</ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="ragioneSociale">Corporate name</label>
+        <input class="form-control" type="text" formControlName="ragioneSociale" id="ragioneSociale">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.ragioneSociale')?.invalid && checkForm('userInfo.ragioneSociale')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.ragioneSociale', 'required')">Corporate name required
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="tipoCliente">Customer type:</label>
+        <select class="form-select" formControlName="tipoCliente" id="tipoCliente">
+          <option value="SRL">SRL</option>
+          <option value="SPA">SPA</option>
+          <option value="SAS">SAS</option>
+          <option value="PA">PA</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="dataInserimento">Registration date</label>
+        <input class="form-control" type="datetime-local" formControlName="dataInserimento" id="dataInserimento">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.dataInserimento')?.invalid && checkForm('userInfo.dataInserimento')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.dataInserimento', 'required')">Registration date required
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="dataUltimoContatto">Last update</label>
+        <input class="form-control" type="datetime-local" formControlName="dataUltimoContatto" id="dataUltimoContatto">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.dataUltimoContatto')?.invalid && checkForm('userInfo.dataUltimoContatto')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.dataUltimoContatto', 'required')">Last update required
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="fatturatoAnnuale">Annual turnover</label>
+        <input class="form-control" type="number" formControlName="fatturatoAnnuale" id="fatturatoAnnuale">
+        <span class="errors"
+          *ngIf="checkForm('userInfo.fatturatoAnnuale')?.invalid && checkForm('userInfo.fatturatoAnnuale')?.touched">
+          <ng-container *ngIf="getFormErrors('userInfo.fatturatoAnnuale', 'required')">Annual turnover required
+          </ng-container>
+        </span>
+      </div>
+      <div formGroupName="indirizzoSedeOperativa">
+        <div class="mb-3">
+          <label class="form-label" for="via">Address</label>
+          <input class="form-control" type="text" formControlName="via" id="via">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeOperativa.via')?.invalid && checkForm('userInfo.indirizzoSedeOperativa.via')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeOperativa.via', 'required')">Address required
+            </ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="civico">Building number</label>
+          <input class="form-control" type="text" formControlName="civico" id="civico">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeOperativa.civico')?.invalid && checkForm('userInfo.indirizzoSedeOperativa.civico')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeOperativa.civico', 'required')">Building number
+              required</ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="cap">Postal code</label>
+          <input class="form-control" type="text" formControlName="cap" id="cap">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeOperativa.cap')?.invalid && checkForm('userInfo.indirizzoSedeOperativa.cap')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeOperativa.cap', 'required')">Postal code required
+            </ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="localita">Location</label>
+          <input class="form-control" type="text" formControlName="localita" id="localita">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeOperativa.localita')?.invalid && checkForm('userInfo.indirizzoSedeOperativa.localita')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeOperativa.localita', 'required')">Location
+              required</ng-container>
+          </span>
+        </div>
+        <div formGroupName="comune">
+          <div class="mb-3">
+            <label class="form-label" for="id">Municipalities:</label>
+            <select class="form-select" formControlName="id" id="id">
+              <option *ngFor="let comune of comuni" [value]="comune.id">{{comune.nome}}</option>
+            </select>
+          </div>
+          <div formGroupName="provincia">
+            <div class="mb-3">
+              <label class="form-label" for="id">Provinces:</label>
+              <select class="form-select" formControlName="id" id="id">
+                <option *ngFor="let provincia of province" [value]="provincia.id">{{provincia.nome}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div formGroupName="indirizzoSedeLegale">
+        <div class="mb-3">
+          <label class="form-label" for="via">Address</label>
+          <input class="form-control" type="text" formControlName="via" id="via">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeLegale.via')?.invalid && checkForm('userInfo.indirizzoSedeLegale.via')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeLegale.via', 'required')">Address required
+            </ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="civico">Building number</label>
+          <input class="form-control" type="text" formControlName="civico" id="civico">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeLegale.civico')?.invalid && checkForm('userInfo.indirizzoSedeLegale.civico')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeLegale.civico', 'required')">Building number
+              required
+            </ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="cap">Postal code</label>
+          <input class="form-control" type="text" formControlName="cap" id="cap">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeLegale.cap')?.invalid && checkForm('userInfo.indirizzoSedeLegale.cap')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeLegale.cap', 'required')">Postal code required
+            </ng-container>
+          </span>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="localita">Location</label>
+          <input class="form-control" type="text" formControlName="localita" id="localita">
+          <span class="errors"
+            *ngIf="checkForm('userInfo.indirizzoSedeLegale.localita')?.invalid && checkForm('userInfo.indirizzoSedeLegale.localita')?.touched">
+            <ng-container *ngIf="getFormErrors('userInfo.indirizzoSedeLegale.localita', 'required')">Location required
+            </ng-container>
+          </span>
+        </div>
+        <div formGroupName="comune">
+          <div class="mb-3">
+            <label class="form-label" for="id">Municipalities:</label>
+            <select class="form-select" formControlName="id" id="id">
+              <option *ngFor="let comune of comuni" [value]="comune.id">{{comune.nome}}</option>
+            </select>
+          </div>
+          <div formGroupName="provincia">
+            <div class="mb-3">
+              <label class="form-label" for="id">Provinces:</label>
+              <select class="form-select" formControlName="id" id="id">
+                <option *ngFor="let provincia of province" [value]="provincia.id">{{provincia.nome}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn text-light btn-danger btn-lg w-100 my-3" type="submit" [disabled]="!form.valid">Confirm</button>
+  </form>
+  <button class="btn text-light btn-warning w-100 my-3" [routerLink]="['/customers']">Back to Customers</button>
+</div>

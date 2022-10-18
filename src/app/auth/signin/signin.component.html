@@ -1,0 +1,31 @@
+<div class="container mx-auto my-5 w-25">
+  <form [formGroup]="form" (ngSubmit)="signin(f)" #f="ngForm">
+    <div formGroupName="userInfo">
+      <div>
+        <label class="form-label" for="username">&#42;Username:</label>
+        <input class="form-control" type="text" formControlName="username" id="username">
+        <span class="errors"
+            *ngIf="checkUsername('userInfo.username')?.invalid && checkUsername('userInfo.username')?.touched">
+            <ng-container *ngIf="getUsernameErrors('userInfo.username', 'required')">Username required</ng-container>
+            <ng-container *ngIf="getUsernameErrors('userInfo.username', 'pattern')">Must contain letters
+            </ng-container>
+        </span>
+      </div>
+      <div>
+        <label class="form-label" for="password">&#42;Password:</label>
+        <input class="form-control" type="password" formControlName="password" id="password">
+        <span class="errors"
+            *ngIf="checkPassword('userInfo.password')?.invalid && checkPassword('userInfo.password')?.touched">
+            <ng-container *ngIf="getPasswordErrors('userInfo.password', 'required')">Password required</ng-container>
+            <ng-container *ngIf="getPasswordErrors('userInfo.password', 'pattern')">Must contain only letters and numbers
+            </ng-container>
+            <ng-container *ngIf="getPasswordErrors('userInfo.password', 'minlength')">
+            </ng-container>
+        </span>
+      </div>
+    </div>
+    <button type="submit" class="btn text-light w-100 my-3" [disabled]="!form.valid"><span>Sign-in</span></button>
+  </form>
+  <h5><span>Not registered yet? Click&nbsp;<a [routerLink]="['/signup']">here</a></span></h5>
+</div>
+

@@ -1,0 +1,21 @@
+<div class="container my-5 mx-auto w-50">
+  <h3 *ngIf="invoices">Customer:&nbsp;{{invoices.cliente.cognomeContatto}}</h3>
+  <h4 *ngIf="invoices">Status:&nbsp;{{invoices.stato.nome}}</h4>
+  <ng-container *ngIf="f.submitted === true">
+    <h3>Status updated</h3>
+  </ng-container>
+  <form [formGroup]="form" (ngSubmit)="updateInvoices(f)" #f="ngForm">
+    <div formGroupName="stato">
+      <div class="mb-3">
+        <label class="form-label" for="id">Update status:</label>
+        <select class="form-select" formControlName="id" id="id">
+          <option *ngFor="let item of status" [value]="item.id">{{item.nome}}</option>
+        </select>
+        <span class="errors" *ngIf="checkForm('stato.id')?.invalid && checkForm('stato.id')?.touched">
+          <ng-container *ngIf="getFormErrors('stato.id', 'required')">Status required</ng-container>
+        </span>
+      </div>
+    </div>
+    <button class="btn btn-button btn-danger w-100 my-3" [disabled]="!form.valid" type="submit">Confirm</button>
+  </form>
+</div>

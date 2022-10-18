@@ -1,0 +1,66 @@
+<div class="container mx-auto my-5 w-25">
+  <form [formGroup]="form" (ngSubmit)="signup(f)" #f="ngForm">
+    <div formGroupName="userInfo">
+      <div class="mb-3">
+        <label class="form-label" for="username">&#42;Username:</label>
+        <input class="form-control" type="text" formControlName="username" id="username">
+        <span class="errors" *ngIf="checkUsername('userInfo.username')?.invalid && checkUsername('userInfo.username')?.touched">
+          <ng-container *ngIf="getUsernameErrors('userInfo.username', 'required')">Username required</ng-container>
+          <ng-container *ngIf="getUsernameErrors('userInfo.username', 'pattern')">Must contain letters
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="nome">&#42;Name:</label>
+        <input class="form-control" type="text" formControlName="nome" id="nome">
+        <span class="errors" *ngIf="checkUsername('userInfo.nome')?.invalid && checkUsername('userInfo.nome')?.touched">
+          <ng-container *ngIf="getUsernameErrors('userInfo.nome', 'required')">Name required</ng-container>
+          <ng-container *ngIf="getUsernameErrors('userInfo.nome', 'pattern')">Must contain letters
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="cognome">&#42;Surname:</label>
+        <input class="form-control" type="text" formControlName="cognome" id="cognome">
+        <span class="errors" *ngIf="checkUsername('userInfo.cognome')?.invalid && checkUsername('userInfo.cognome')?.touched">
+          <ng-container *ngIf="getUsernameErrors('userInfo.cognome', 'required')">Surname required</ng-container>
+          <ng-container *ngIf="getUsernameErrors('userInfo.cognome', 'pattern')">Must contain letters
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email">&#42;E-mail:</label>
+        <input class="form-control" type="email" formControlName="email" id="email">
+        <span class="errors" *ngIf="checkEmail('userInfo.email')?.invalid && checkEmail('userInfo.email')?.touched">
+          <ng-container *ngIf="getEmailErrors('userInfo.email', 'required')">E-mail required</ng-container>
+          <ng-container *ngIf="getEmailErrors('userInfo.email', 'email')">Wrong format
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="password">&#42;Password:</label>
+        <input class="form-control" type="password" formControlName="password" id="password">
+        <span class="errors" *ngIf="checkPassword('userInfo.password')?.invalid && checkPassword('userInfo.password')?.touched">
+          <ng-container *ngIf="getPasswordErrors('userInfo.password', 'required')">Password required</ng-container>
+          <ng-container *ngIf="getPasswordErrors('userInfo.password', 'pattern')">Must contain only letters and numbers
+          </ng-container>
+          <ng-container *ngIf="getPasswordErrors('userInfo.password', 'minlength')">Must contain at least 6 characters
+          </ng-container>
+        </span>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="role">&#42;Roles:</label>
+        <select class="form-select" formControlName="role" id="role">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn text-light w-100 my-3" [disabled]="!form.valid">Sign-up</button>
+    <div>
+      <ng-container *ngIf="f.submitted === true">
+        <span><h5>Congratulations!&nbsp;<a [routerLink]="['/signin']">Sign-in now</a></h5></span>
+      </ng-container>
+    </div>
+  </form>
+</div>
